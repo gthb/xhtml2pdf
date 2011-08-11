@@ -6,6 +6,7 @@ from reportlab.platypus.doctemplate import NextPageTemplate, FrameBreak
 from reportlab.platypus.flowables import Spacer, HRFlowable, PageBreak, Flowable
 from reportlab.platypus.frames import Frame
 from reportlab.platypus.paraparser import tt2ps, ABag
+from xhtml2pdf import svgimage
 from xhtml2pdf import xhtml2pdf_reportlab
 from xhtml2pdf.util import getColor, getSize, getAlign, dpi96
 from xhtml2pdf.xhtml2pdf_reportlab import PmlImage, PmlPageTemplate
@@ -254,6 +255,14 @@ class pisaTagBR(pisaTag):
         c.fragStrip = True
         del c.frag.lineBreak
         c.force = True
+
+class pisaTagOBJECT(pisaTag):
+    def start(self, c):
+        if self.attr.type == 'image/svg+xml': 
+            height = self.attr.height
+            width = self.attr.width
+            svg_img = svgimage.SVGImage(self.attr.data.getData(), width, height)
+            c.addStory(svg_img)
 
 class pisaTagIMG(pisaTag):
 

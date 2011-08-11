@@ -228,6 +228,13 @@ TAGS = {
                                 "texttop", "absmiddle", "absbottom", "baseline"],
         }),
 
+    "object": (0, {
+        "width":                SIZE,
+        "height":               SIZE,
+        "data":                 FILE,
+        "type":                 STRING,
+        }),
+
     "table": (1, {
         "align":                (["left", "center", "right"], "left"),
         "valign":               (["top", "bottom", "middle"], "middle"),
