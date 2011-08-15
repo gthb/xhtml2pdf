@@ -14,7 +14,7 @@ class SVGImage(Flowable):
         Flowable.__init__(self)
         self._kind = kind
         s = svglib.SvgRenderer()
-        doc = xml.dom.minidom.parseString(svg_string.encode( "utf-8" ))
+        doc = xml.dom.minidom.parseString(svg_string)
         svg_dom = doc.documentElement
         s.render(svg_dom)
         self.doc = s.finish()
