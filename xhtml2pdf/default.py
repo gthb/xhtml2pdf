@@ -235,6 +235,11 @@ TAGS = {
         "type":                 STRING,
         }),
 
+    "svg": (0, {
+        "width":                SIZE,
+        "height":               SIZE,
+        }),
+
     "table": (1, {
         "align":                (["left", "center", "right"], "left"),
         "valign":               (["top", "bottom", "middle"], "middle"),

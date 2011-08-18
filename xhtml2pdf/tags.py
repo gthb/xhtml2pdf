@@ -264,6 +264,16 @@ class pisaTagOBJECT(pisaTag):
             svg_img = svgimage.SVGImage(self.attr.data.getData(), width, height)
             c.addStory(svg_img)
 
+class pisaTagSVG(pisaTag):
+    def start(self, c):
+        height = self.attr.height
+        width = self.attr.width
+        svg_img = svgimage.SVGImage(self.node, width, height)
+        c.addStory(svg_img)
+        for cn in self.node.childNodes:
+            cn.hide_me = True
+
+
 class pisaTagIMG(pisaTag):
 
     def start(self, c):

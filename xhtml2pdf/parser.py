@@ -485,7 +485,7 @@ def pisaLoop(node, context, path=[], **kw):
                 if str(context.cssAttr["page-break-after"]).lower() == "left":
                     pageBreakAfter = PAGE_BREAK_LEFT
 
-        if display == "none":
+        if display == "none" or hasattr(node, 'hide_me'):
             # print "none!"
             return
 

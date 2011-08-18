@@ -10,13 +10,15 @@ from svglib import svglib
 
 class SVGImage(Flowable):
 
-    def __init__(self, svg_string, width=None, height=None, kind='direct'):
+    def __init__(self, svg, width=None, height=None, kind='direct'):
+        # svg is either a text buffer with svg or a xml node object.
         Flowable.__init__(self)
         self._kind = kind
         s = svglib.SvgRenderer()
-        doc = xml.dom.minidom.parseString(svg_string)
-        svg_dom = doc.documentElement
-        s.render(svg_dom)
+        if isinstance(svg, (str, unicode)):
+            doc = xml.dom.minidom.parseString(svg)
+            svg = doc.documentElement
+        s.render(svg)
         self.doc = s.finish()
         #self.doc = svglib.svg2rlg(filename)
         self.imageWidth = width
