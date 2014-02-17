@@ -35,11 +35,13 @@ import urlparse
 
 rgb_re = re.compile("^.*?rgb[(]([0-9]+).*?([0-9]+).*?([0-9]+)[)].*?[ ]*$")
 
-if not(reportlab.Version[0] == "2" and reportlab.Version[2] >= "1"):
+from distutils.version import StrictVersion
+REPORTLAB_VERSION = StrictVersion(reportlab.Version)
+
+if REPORTLAB_VERSION < StrictVersion('2.1'):
     raise ImportError("Reportlab Version 2.1+ is needed!")
 
-REPORTLAB22 = (reportlab.Version[0] == "2" and reportlab.Version[2] >= "2")
-# print "***", reportlab.Version, REPORTLAB22, reportlab.__file__
+REPORTLAB22 = REPORTLAB_VERSION >= StrictVersion('2.2')
 
 log = logging.getLogger("xhtml2pdf")
 
